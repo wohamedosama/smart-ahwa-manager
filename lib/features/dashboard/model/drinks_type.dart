@@ -1,23 +1,10 @@
-abstract class DrinkType {
-  String get drinkName;
-}
+enum DrinkType {
+  tea('shai'),
+  mintTea('mint shai'),
+  turkish('Turkish coffee'),
+  hibiscus('hibiscus tea');
 
-class Tea extends DrinkType {
-  @override
-  String get drinkName => 'shai';
-}
+  const DrinkType(this.drinkName);
 
-class MintTea extends DrinkType {
-  @override
-  String get drinkName => 'mint shai';
-}
-
-class Turkish extends DrinkType {
-  @override
-  String get drinkName => 'Turkish coffee';
-}
-
-class Hibiscus extends DrinkType {
-  @override
-  String get drinkName => ' hibiscus tea';
+  final String drinkName;
 }

@@ -3,11 +3,15 @@ import 'package:smart_ahwa_manager/features/dashboard/model/orders_model.dart';
 abstract class OrderServices {
   void addOrder(OrdersModel orderModel);
   List<OrdersModel> getAllPendingOrders();
-  void isCompletes(String customerId);
+  void isCompleted(String customerId);
   List<OrdersModel> gatAllOrders();
 }
 
 class Orders implements OrderServices {
+  static final Orders _instance = Orders._internal();
+  factory Orders() => _instance;
+  Orders._internal();
+
   final List<OrdersModel> orders = [];
   int nextOrderId = 1;
   @override
@@ -38,7 +42,7 @@ class Orders implements OrderServices {
   }
 
   @override
-  void isCompletes(String orderId) {
+  void isCompleted(String orderId) {
     final orderIndex = orders.indexWhere((order) => order.id == orderId);
     if (orderIndex != -1) {
       orders[orderIndex].completeOrder();
